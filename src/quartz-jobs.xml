@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<job-scheduling-data xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData http://www.quartz-scheduler.org/xml/job_scheduling_data_1_8.xsd"
+  version="1.8">
+
+    <schedule>
+        <job>
+            <name>my-very-clever-job</name>
+            <group>MYJOB_GROUP</group>
+
+			<description>Job to Test
+			http://stackoverflow.com/questions/9596957/quartz-properties-does-not-trigger-quartz-job
+			</description>
+			<job-class>credera.pables.quartz.TestQuartz</job-class>
+            <job-data-map>
+                <entry>
+                    <key>burger-type</key>
+                    <value>hotdog</value>
+                </entry>
+                <entry>
+                    <key>dressing-list</key>
+                    <value>ketchup,mayo</value>
+                </entry>
+            </job-data-map>
+        </job>
+
+        <trigger>
+            <cron>
+                <name>my-trigger</name>
+                <group>MYTRIGGER_GROUP</group>
+                <job-name>my-very-clever-job</job-name>
+
+                <job-group>MYJOB_GROUP</job-group>
+                <cron-expression>0,5,10,15,20,25,30,35,40,45,50,55 * * * * ?</cron-expression>
+
+            </cron>
+        </trigger>
+    </schedule>
+</job-scheduling-data>
